@@ -10,17 +10,14 @@ namespace SelectionAleatoire_Common.Workbench
             _selector = selector;
         }
 
-        protected override void ExecuteInternal(long iteration)
+        protected override ElementType ExecuteInternal(long iteration)
         {
-            if (_selector.Count() == 0)
-            {
-                _selector.Reset();
-            }
             ElementType value = ExecuteIterationOperation(iteration, _selector);
             if (value != null)
             {
                 Register(value);
             }
+            return value;
         }
 
         protected abstract ElementType ExecuteIterationOperation(long iteration, IRandomSelector<ElementType> selector);

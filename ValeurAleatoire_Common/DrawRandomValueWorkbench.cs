@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace ValeurAleatoire_Common
 {
-    public class RandomValueWorkbench<ElementType> : BaseRandomWorkbench<ElementType>
+    public class DrawRandomValueWorkbench<ElementType> : BaseRandomWorkbench<ElementType>
         where ElementType : struct, IComparable, IComparable<ElementType>, IConvertible, IEquatable<ElementType>, IFormattable
     {
-        public RandomValueWorkbench(string name, Func<ElementType> randomFunc, List<ElementType> intervals = null)
+        public DrawRandomValueWorkbench(string name, Func<ElementType> randomFunc, List<ElementType> intervals = null)
             : base(name)
         {
             _randomFunc = randomFunc;
@@ -19,7 +19,7 @@ namespace ValeurAleatoire_Common
             return maxIterations.HasValue ? maxIterations.Value < Iterations : false;
         }
 
-        protected override void ExecuteInternal(long iteration)
+        protected override ElementType ExecuteInternal(long iteration)
         {
             ElementType value = _randomFunc();
             if(_intervals != null)
@@ -27,6 +27,7 @@ namespace ValeurAleatoire_Common
                 value = FindInterval(value);
             }
             Register(value);
+            return value;
         }
 
         protected ElementType FindInterval(ElementType value)

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System;
 
 namespace SelectionAleatoire_Common.Workbench
 {
@@ -17,7 +17,7 @@ namespace SelectionAleatoire_Common.Workbench
         protected override ElementType ExecuteIterationOperation(long iteration, IRandomSelector<ElementType> selector)
         {
             Console.WriteLine();
-            List<string> CHOICES = new List<string>() { CHOICE_SELECT, CHOICE_POP, CHOICE_QUIT };
+            List<string> CHOICES = new List<string>() { CHOICE_SELECT, CHOICE_POP, CHOICE_RESET, CHOICE_QUIT };
 
             if (iteration > 0)
             {
@@ -27,9 +27,11 @@ namespace SelectionAleatoire_Common.Workbench
             Console.WriteLine("Operations:");
             Console.WriteLine(" -(S)elect");
             Console.WriteLine(" -(P)op");
+            Console.WriteLine(" -(R)eset");
             Console.WriteLine(" -(Q)uit");
 
             ElementType value = default(ElementType);
+
             string choice = "";
             while (!CHOICES.Contains(choice))
             {
@@ -47,6 +49,11 @@ namespace SelectionAleatoire_Common.Workbench
                 value = selector.Pop();
                 Console.WriteLine("Element poped '{0}'", value);
             }
+            else if (choice == CHOICE_RESET)
+            {
+                selector.Reset();
+                Console.WriteLine("Selector resetted");
+            }
             else if (choice == CHOICE_QUIT)
             {
                 // nothing to do
@@ -57,6 +64,7 @@ namespace SelectionAleatoire_Common.Workbench
 
         private const string CHOICE_SELECT = "s";
         private const string CHOICE_POP = "p";
+        private const string CHOICE_RESET = "r";
         private const string CHOICE_QUIT = "q";
 
         private string _lastChoice;

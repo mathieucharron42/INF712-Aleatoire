@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HumanRandomValueWorkbench.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RandomUtils.cs" />
-    <Compile Include="RandomValueWorkbench.cs" />
+    <Compile Include="DrawRandomValueWorkbench.cs" />
+    <Compile Include="RandomValueWorkbenches.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.editorconfig">

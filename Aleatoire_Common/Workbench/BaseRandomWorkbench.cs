@@ -65,7 +65,7 @@ namespace Aleatoire_Common
             }
         }
 
-        protected abstract void ExecuteInternal(long iteration);
+        protected abstract ElementType ExecuteInternal(long iteration);
 
         protected abstract bool IsDone(long? maxIterations, long iteration);
 
